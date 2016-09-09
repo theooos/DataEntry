@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <script src="jquery-3.1.0.min.js"></script>
+        <script src="script.js"></script>
+        <style>
+            input, select {
+                margin:10px;
+            }
+        </style>
+    </head>
+    <body onload="loadTopics()">
+        <h1>Question Things</h1>
+        <div>
+            <h2>Topic</h2>
+            <select id="topicSelector" onchange="topicChange(this)"></select>
+            <button id="topicRefresh" onclick="loadTopics()">Refresh available topics</button>
+        </div>
+
+        <div>
+            <h2>Questions</h2>
+            <input id="newQuestion" placeholder="Question name">
+            <select id="newQuestionStarter">
+                <option>True</option>
+                <option>False</option>
+            </select>
+            <input id="newQuestionTags" placeholder="Keywords">
+            <input type="button" value="Add Question" onclick="questionAdded(newQuestion.value, newQuestionStarter.value, newQuestionTags.value)">
+            <br>
+            <select id="questionSelector" onchange="questionChange(this)"></select>
+            <button id="questionRefresh" onclick="loadQuestions()">Refresh available questions</button>
+        </div>
+
+        <div>
+            <h2>Response</h2>
+            <input id="newMessage" placeholder="Message">
+            <input id="newKeywords" placeholder="Keywords (comma seperated)">
+            <input id="newAcnol" placeholder="Acnol">
+            <select id="newChangeTopic">
+                <option>True</option>
+                <option>False</option>
+            </select>
+            <select id="newOurResponse">
+                <option>True</option>
+                <option>False</option>
+            </select>
+            <input type="button" value="Add Question" onclick="responseAdded(newMessage.value, newKeywords.value, newAcnol.value, newChangeTopic.value, newOurResponse.value)">
+        </div>
+    </body>
+</html>

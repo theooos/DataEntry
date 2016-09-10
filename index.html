@@ -5,7 +5,7 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body onload="loadTopics()">
-        <h1>Question Things</h1>
+        <h1 align="center" style="padding: 30px">Data Entry</h1>
         <div>
             <h2>Topic</h2>
             <input id="newTopic" placeholder="Enter a new topic here.">
@@ -16,6 +16,8 @@
             </select>
             <input type="button" value="Refresh available topics" id="topicRefresh" onclick="loadTopics()">
         </div>
+
+        <br>
 
         <div>
             <h2>Questions</h2>
@@ -29,28 +31,30 @@
             <input type="button" value="Add Question" onclick="addQuestion(topicSelector.value, newQuestion.value, newQuestionStarter.value, newQuestionTags.value)">
             <br>
             <h4>Select a question from dropdown below before adding responses.</h4>
-            <select id="questionSelector" onchange="questionChange(this)">
+            <select id="questionSelector">
                 <option value="" disabled selected>Select a question</option>
             </select>
             <input type="button" value="Refresh available questions" id="questionRefresh" onclick="loadQuestions(topicSelector.value)">
         </div>
 
+        <br>
+
         <div>
             <h2>Response</h2>
             <input id="newMessage" placeholder="Response | If our AI should use this response, fill it with personality, else make it bland.">
             <input id="newKeywords" placeholder="Keywords | comma separated">
-            <input id="newAcnol" placeholder="Reply to response | A personality filled reply to the response without any information. E.g. Cool!">
+            <input id="newReply" placeholder="Reply to response | A personality filled reply to the response without any information. E.g. Cool!">
             <select id="newChangeTopic">
                 <option value="" disabled selected>If the human gave this response, should we change topic?</option>
                 <option>True</option>
                 <option>False</option>
             </select>
             <select id="newOurResponse">
-                <option value="" disabled selected>Should the given response be used by our AI if asked the selected question?</option>
-                <option>True</option>
+                <option disabled selected>Should the given response be used by our AI if asked the selected question?</option>
+                <option value="t">True</option>
                 <option>False</option>
             </select>
-            <input type="button" value="Add Response" onclick="responseAdded(newMessage.value, newKeywords.value, newAcnol.value, newChangeTopic.value, newOurResponse.value)">
+            <input type="button" value="Add Response" onclick="addResponse(topicSelector.value, questionSelector.value, newMessage.value, newKeywords.value, newReply.value, newChangeTopic.value, newOurResponse.value)">
         </div>
     </body>
 </html>

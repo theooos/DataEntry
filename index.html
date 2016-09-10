@@ -8,38 +8,49 @@
         <h1>Question Things</h1>
         <div>
             <h2>Topic</h2>
-            <select id="topicSelector" onchange="topicChange(this)"></select>
-            <button id="topicRefresh" onclick="loadTopics()">Refresh available topics</button>
+            <input id="newTopic" placeholder="Enter a new topic here.">
+            <input type="button" id="addTopic" onclick="addTopic(newTopic.value)" value="Add topic">
+            <h4>Select a topic from dropdown below before adding questions.</h4>
+            <select id="topicSelector" onchange="loadQuestions(this.value)">
+                <option value="" disabled selected>Select a topic</option>
+            </select>
+            <input type="button" value="Refresh available topics" id="topicRefresh" onclick="loadTopics()">
         </div>
 
         <div>
             <h2>Questions</h2>
-            <input id="newQuestion" placeholder="Question name">
+            <input id="newQuestion" placeholder="Enter question here.">
             <select id="newQuestionStarter">
+                <option value="" disabled selected>Can this question be used to change topic?</option>
                 <option>True</option>
                 <option>False</option>
             </select>
             <input id="newQuestionTags" placeholder="Keywords">
-            <input type="button" value="Add Question" onclick="questionAdded(newQuestion.value, newQuestionStarter.value, newQuestionTags.value)">
+            <input type="button" value="Add Question" onclick="addQuestion(topicSelector.value, newQuestion.value, newQuestionStarter.value, newQuestionTags.value)">
             <br>
-            <select id="questionSelector" onchange="questionChange(this)"></select>
-            <button id="questionRefresh" onclick="loadQuestions()">Refresh available questions</button>
+            <h4>Select a question from dropdown below before adding responses.</h4>
+            <select id="questionSelector" onchange="questionChange(this)">
+                <option value="" disabled selected>Select a question</option>
+            </select>
+            <input type="button" value="Refresh available questions" id="questionRefresh" onclick="loadQuestions(topicSelector.value)">
         </div>
 
         <div>
             <h2>Response</h2>
-            <input id="newMessage" placeholder="Message">
-            <input id="newKeywords" placeholder="Keywords (comma seperated)">
-            <input id="newAcnol" placeholder="Acnol">
+            <input id="newMessage" placeholder="Response | If our AI should use this response, fill it with personality, else make it bland.">
+            <input id="newKeywords" placeholder="Keywords | comma separated">
+            <input id="newAcnol" placeholder="Reply to response | A personality filled reply to the response without any information. E.g. Cool!">
             <select id="newChangeTopic">
+                <option value="" disabled selected>If the human gave this response, should we change topic?</option>
                 <option>True</option>
                 <option>False</option>
             </select>
             <select id="newOurResponse">
+                <option value="" disabled selected>Should the given response be used by our AI if asked the selected question?</option>
                 <option>True</option>
                 <option>False</option>
             </select>
-            <input type="button" value="Add Question" onclick="responseAdded(newMessage.value, newKeywords.value, newAcnol.value, newChangeTopic.value, newOurResponse.value)">
+            <input type="button" value="Add Response" onclick="responseAdded(newMessage.value, newKeywords.value, newAcnol.value, newChangeTopic.value, newOurResponse.value)">
         </div>
     </body>
 </html>

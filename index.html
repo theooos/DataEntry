@@ -1,7 +1,11 @@
 <html>
     <head>
-        <script src="jquery-3.1.0.min.js"></script>
+        <script src="jquery/jquery-3.1.0.min.js"></script>
+        <script src="jquery/jquery-ui.min.js"></script>
+        <script src="jquery/jquery.multiselect.min.js"></script>
         <script src="script.js"></script>
+        <link rel="stylesheet" type="text/css" href="jquery/jquery-ui.min.css">
+        <link rel="stylesheet" type="text/css" href="jquery/jquery.multiselect.css">
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body onload="loadTopics()">
@@ -10,6 +14,7 @@
             <h2>Topic</h2>
             <input id="newTopic" placeholder="Enter a new topic here.">
             <input type="button" id="addTopic" onclick="addTopic(newTopic.value)" value="Add topic">
+            <br>
             <h4>Select a topic from dropdown below before adding questions.</h4>
             <select id="topicSelector" onchange="loadQuestions(this.value)">
                 <option value="" disabled selected>Select a topic</option>
@@ -23,7 +28,7 @@
             <h2>Questions</h2>
             <input id="newQuestion" placeholder="Enter question here.">
             <select id="newQuestionStarter">
-                <option value="" disabled selected>Can this question be used to change topic?</option>
+                <option value="" disabled selected>Is this an opening question for the topic?</option>
                 <option>True</option>
                 <option>False</option>
             </select>
@@ -53,6 +58,12 @@
                 <option disabled selected>Should the given response be used by our AI if asked the selected question?</option>
                 <option value="t">True</option>
                 <option>False</option>
+            </select>
+            <select id="multiSelect" multiple="multiple">
+                <option value="truth">True</option>
+                <option value="falsh">False</option>
+                <option value="poop">Poo</option>
+                <option value="pisser">Piss</option>
             </select>
             <input type="button" value="Add Response" onclick="addResponse(topicSelector.value, questionSelector.value, newMessage.value, newKeywords.value, newReply.value, newChangeTopic.value, newOurResponse.value)">
         </div>

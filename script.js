@@ -1,19 +1,34 @@
 
 var server = "http://138.68.139.139/";
 
+var topicSelector;
+
+var newQuestion;
+var newQuestionStarter;
+var newQuestionTags;
+var questionSelector;
+
+var newMessage;
+var newKeywords;
+var newReply;
+var newChangeTopic;
+var newOurResponse;
+var multiSelect;
+
 window.onload = function () {
-    var topicSelector = document.getElementById('topicSelector');
+    topicSelector = document.getElementById('topicSelector');
 
-    var newQuestion = document.getElementById('newQuestion');
-    var newQuestionStarter = document.getElementById('newQuestionStarter');
-    var newQuestionTags = document.getElementById('newQuestionTags');
-    var questionSelector = document.getElementById('questionSelector');
+    newQuestion = document.getElementById('newQuestion');
+    newQuestionStarter = document.getElementById('newQuestionStarter');
+    newQuestionTags = document.getElementById('newQuestionTags');
+    questionSelector = document.getElementById('questionSelector');
 
-    var newMessage = document.getElementById('newMessage');
-    var newKeywords = document.getElementById('newKeywords');
-    var newReply = document.getElementById('newReply');
-    var newChangeTopic = document.getElementById('newChangeTopic');
-    var newOurResponse = document.getElementById('newOurResponse');
+    newMessage = document.getElementById('newMessage');
+    newKeywords = document.getElementById('newKeywords');
+    newReply = document.getElementById('newReply');
+    newChangeTopic = document.getElementById('newChangeTopic');
+    newOurResponse = document.getElementById('newOurResponse');
+    multiSelect = document.getElementById('multiSelect');
 
 
     $("#newOurResponse").change(function(){
@@ -31,6 +46,8 @@ window.onload = function () {
             newChangeTopic.disabled = false;
         }
     });
+
+    $("#multiSelect").multiselect();
 };
 
 // ############ TOPICS ############
@@ -40,6 +57,10 @@ function clearTopics() {
 }
 
 function addTopic(topicName) {
+    if(topicName == ""){
+        alert("You are missing a field.");
+        return;
+    }
     var topicJSON = {
         "topic": topicName,
         "questions":[]
@@ -72,6 +93,10 @@ function resetQuestionArea(){
 
 // When the question is added
 function addQuestion(topic, question, starter, tags) {
+    if(topic == "" || question == "" || starter == "" || tags == ""){
+        alert("You are missing a field.");
+        return;
+    }
     var questionJSON = {
         "topic":topic,
         "questions":[
@@ -99,14 +124,21 @@ function loadQuestions(topic) {
         questions.forEach(function(question){
             var option = document.createElement("option");
             option.text = question["message"];
+            option.value = question["message"];
             questionSelector.add(option);
+            multiSelect.add(option);
         })
+        $('#multiSelect').multiselect('refresh');
     });
 }
 
 
 // ########## RESPONSES ############
 function addResponse(topic, question, response, keywords, reply, changeTopic, ourResponse){
+    if(topic == "" || question == "" || response == "" || keywords == "" || reply == "" || changeTopic == "" || ourResponse == ""){
+        alert("You are missing a field.");
+        return;
+    }
     var responseJSON = {
         "topic": topic,
         "questions": [
@@ -117,7 +149,7 @@ function addResponse(topic, question, response, keywords, reply, changeTopic, ou
                         "message":response,
                         "presentKeywords":keywords,
                         "response":reply,
-                        "followUp":[],
+                        "followUp":getSelected(),
                         "switchTopic":changeTopic,
                         "usedByAI":ourResponse
                     }
@@ -125,8 +157,18 @@ function addResponse(topic, question, response, keywords, reply, changeTopic, ou
             }
         ]
     }
-    send(responseJSON);
+    // send(responseJSON);
     resetResponseArea();
+}
+
+function getSelected(){
+    var selected = $('#multiSelect').multiselect('getChecked');
+    var ids = [];
+    for(var i = 0; i < selected.length; i++){
+        ids.push(selected[i].value);
+    }
+    console.log(ids);
+    return ids;
 }
 
 function resetResponseArea() {
@@ -135,6 +177,7 @@ function resetResponseArea() {
     newReply.value = "";
     newChangeTopic.value = "";
     newOurResponse.value = "";
+    $('#multiSelect').multiselect('uncheckAll');
 }
 
 
@@ -150,6 +193,7 @@ function send(data){
     sendWithFunction(data, function (reply) {
         console.log("[SENT LINE BELOW]");
         console.log(data);
+        console.log(JSON.stringify(data));
         console.log("[SERVER] "+reply);
     })
 }

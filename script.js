@@ -66,14 +66,14 @@ function addTopic(topicName) {
         "questions":[]
     };
     console.log(JSON.stringify(topicJSON));
-    send(topicJSON);
-    loadTopics();
+    send(topicJSON, loadTopics());
 }
 
 // Populates topics dropdown.
 function loadTopics(){
     clearTopics();
     $.get(server+"topics", function(topics){
+        console.log("[SERVER] " + JSON.stringify(topics));
         topics.forEach(function (topic) {
             var option = document.createElement("option");
             option.text = topic;
@@ -89,6 +89,8 @@ function resetQuestionArea(){
     questionSelector.innerHTML = "<option value='' disabled selected>Select a question</option>";
     newQuestion.value = "";
     newQuestionTags.value = "";
+    multiSelect.innerHTML = "";
+    $('#multiSelect').multiselect('refresh');
 }
 
 // When the question is added
@@ -111,23 +113,33 @@ function addQuestion(topic, question, starter, tags) {
         ]
     }
     console.log(JSON.stringify(questionJSON));
-    send(questionJSON);
-    loadQuestions(topic);
+    send(questionJSON, loadQuestions(topic));
 }
 
 // Populates questions dropdown with all questions for given topic.
 function loadQuestions(topic) {
+    if(topic == ""){
+        alert("Please select a topic first.");
+        return;
+    }
     resetQuestionArea();
+
     $.get(server+"questions/"+topic, function(fullTopic){
+        console.log("[SERVER] " + JSON.stringify(fullTopic));
         var topicJSON = JSON.parse(JSON.stringify(fullTopic));
         var questions = topicJSON["questions"];
+
         questions.forEach(function(question){
             var option = document.createElement("option");
             option.text = question["message"];
-            option.value = question["message"];
+            option.value = question["id"];
+
+            var option2 = option.cloneNode(true);
+
             questionSelector.add(option);
-            multiSelect.add(option);
+            multiSelect.add(option2);
         })
+
         $('#multiSelect').multiselect('refresh');
     });
 }
@@ -143,7 +155,7 @@ function addResponse(topic, question, response, keywords, reply, changeTopic, ou
         "topic": topic,
         "questions": [
             {
-                "message": question,
+                "id": question,
                 "children":[
                     {
                         "message":response,
@@ -157,7 +169,7 @@ function addResponse(topic, question, response, keywords, reply, changeTopic, ou
             }
         ]
     }
-    // send(responseJSON);
+    send(responseJSON);
     resetResponseArea();
 }
 

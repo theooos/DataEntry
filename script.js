@@ -32,7 +32,7 @@ window.onload = function () {
 
 
     $("#newOurResponse").change(function(){
-        if($(this).val() == "t") {
+        if($(this).val() == "true") {
             newKeywords.value = "";
             newKeywords.disabled = true;
             newReply.value = "";
@@ -50,12 +50,10 @@ window.onload = function () {
     $("#multiSelect").multiselect();
 };
 
-// ############ TOPICS ############
-// Clears topics dropdown.
-function clearTopics() {
-    topicSelector.innerHTML = "<option value='' disabled selected>Select a topic</option>";
-}
 
+// ####################################################### TOPICS ######################################################
+
+// Adds a topic to the server.
 function addTopic(topicName) {
     if(topicName == ""){
         alert("You are missing a field.");
@@ -65,8 +63,10 @@ function addTopic(topicName) {
         "topic": topicName,
         "questions":[]
     };
-    console.log(JSON.stringify(topicJSON));
-    send(topicJSON, loadTopics());
+    send(topicJSON, function(reply){
+        alert("[SERVER] " + reply);
+        loadTopics();
+    });
 }
 
 // Populates topics dropdown.
@@ -82,16 +82,13 @@ function loadTopics(){
     });
 }
 
-
-// ############ QUESTIONS ###########
-// Resets the question area to it's normal state.
-function resetQuestionArea(){
-    questionSelector.innerHTML = "<option value='' disabled selected>Select a question</option>";
-    newQuestion.value = "";
-    newQuestionTags.value = "";
-    multiSelect.innerHTML = "";
-    $('#multiSelect').multiselect('refresh');
+// Clears topics dropdown.
+function clearTopics() {
+    topicSelector.innerHTML = "<option value='' disabled selected>Select a topic</option>";
 }
+
+
+// ####################################################### QUESTIONS ###################################################
 
 // When the question is added
 function addQuestion(topic, question, starter, tags) {
@@ -112,8 +109,10 @@ function addQuestion(topic, question, starter, tags) {
 
         ]
     }
-    console.log(JSON.stringify(questionJSON));
-    send(questionJSON, loadQuestions(topic));
+    send(questionJSON, function(reply){
+        alert("[SERVER] "+reply);
+        loadQuestions(topic);
+    });
 }
 
 // Populates questions dropdown with all questions for given topic.
@@ -131,7 +130,7 @@ function loadQuestions(topic) {
 
         questions.forEach(function(question){
             var option = document.createElement("option");
-            option.text = question["message"];
+            option.text = question["message"] + questionDetails(question["children"]);
             option.value = question["id"];
 
             var option2 = option.cloneNode(true);
@@ -144,12 +143,44 @@ function loadQuestions(topic) {
     });
 }
 
+// Gets how many children the question has, and also whether it has an AI response, and returns apporpriate label.
+function questionDetails(children){
+    var total = children.length;
+    var string = " "+total;
+    for(var i = 0; i < total; i++){
+        console.log("Used by ai? "+children[i]["usedByAI"]);
+        if(children[i]["usedByAI"] == "true"){
+            string += " *";
+        }
+    }
+    return string;
+}
 
-// ########## RESPONSES ############
+// Resets the question area to it's normal state.
+function resetQuestionArea(){
+    questionSelector.innerHTML = "<option value='' disabled selected>Select a question</option>";
+    newQuestion.value = "";
+    newQuestionTags.value = "";
+    multiSelect.innerHTML = "";
+    $('#multiSelect').multiselect('refresh');
+}
+
+
+// ########################################## RESPONSES ################################################################
+
+// Sends a response to the server.
 function addResponse(topic, question, response, keywords, reply, changeTopic, ourResponse){
-    if(topic == "" || question == "" || response == "" || keywords == "" || reply == "" || changeTopic == "" || ourResponse == ""){
-        alert("You are missing a field.");
-        return;
+    if(ourResponse == "true"){
+        if(topic == "" || question == "" || response == ""){
+            alert("You are missing a field.1");
+            return;
+        }
+    }
+    else{
+        if(topic == "" || question == "" || response == "" || keywords == "" || reply == "" || changeTopic == "" || ourResponse == ""){
+            alert("You are missing a field.2" + ourResponse);
+            return;
+        }
     }
     var responseJSON = {
         "topic": topic,
@@ -173,16 +204,17 @@ function addResponse(topic, question, response, keywords, reply, changeTopic, ou
     resetResponseArea();
 }
 
+// Retrieves all selected questions from multiselect widget.
 function getSelected(){
     var selected = $('#multiSelect').multiselect('getChecked');
     var ids = [];
     for(var i = 0; i < selected.length; i++){
         ids.push(selected[i].value);
     }
-    console.log(ids);
     return ids;
 }
 
+// Resets the response area so a new response can be added.
 function resetResponseArea() {
     newMessage.value = "";
     newKeywords.value = "";
@@ -193,7 +225,9 @@ function resetResponseArea() {
 }
 
 
-// ######### OTHER ###########
+// ########################################### OTHER ###################################################################
+
+// Creates a UUID for a question.
 function uuid(){
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
         var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
@@ -201,15 +235,17 @@ function uuid(){
     });
 }
 
+// Sends provided data to the server with a standard callback.
 function send(data){
     sendWithFunction(data, function (reply) {
         console.log("[SENT LINE BELOW]");
         console.log(data);
         console.log(JSON.stringify(data));
-        console.log("[SERVER] "+reply);
+        alert("[SERVER] "+reply);
     })
 }
 
+// Sends provided data to server with provided callback.
 function sendWithFunction(data,func){
     $.ajax({
         type: "POST",

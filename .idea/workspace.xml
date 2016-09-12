@@ -30,8 +30,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="713">
-              <caret line="61" column="57" selection-start-line="61" selection-start-column="57" selection-end-line="61" selection-end-column="57" />
+            <state relative-caret-position="1003">
+              <caret line="59" column="31" selection-start-line="59" selection-start-column="31" selection-end-line="59" selection-end-column="31" />
               <folding>
                 <element signature="n#style#0;n#h1#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -42,9 +42,23 @@
       <file leaf-file-name="script.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="142" column="42" selection-start-line="142" selection-start-column="42" selection-end-line="142" selection-end-column="42" />
-              <folding />
+            <state relative-caret-position="776">
+              <caret line="155" column="18" selection-start-line="155" selection-start-column="18" selection-end-line="155" selection-end-column="18" />
+              <folding>
+                <element signature="e#279#1482#0" expanded="false" />
+                <element signature="n#!!block;n#addTopic#0" expanded="false" />
+                <element signature="n#!!block;n#loadTopics#0" expanded="false" />
+                <element signature="n#!!block;n#clearTopics#0" expanded="false" />
+                <element signature="n#!!block;n#addQuestion#0" expanded="false" />
+                <element signature="e#3328#3398#0" expanded="false" />
+                <element signature="n#!!block;n#resetQuestionArea#0" expanded="false" />
+                <element signature="n#!!block;n#addResponse#0" expanded="false" />
+                <element signature="n#!!block;n#getSelected#0" expanded="false" />
+                <element signature="n#!!block;n#resetResponseArea#0" expanded="false" />
+                <element signature="n#!!block;n#uuid#0" expanded="false" />
+                <element signature="n#!!block;n#send#0" expanded="false" />
+                <element signature="n#!!block;n#sendWithFunction#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -79,7 +93,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-7" />
-    <option name="width" value="827" />
+    <option name="width" value="974" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -108,7 +122,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -143,6 +156,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -226,18 +240,19 @@
       <workItem from="1473524161831" duration="13498000" />
       <workItem from="1473541079827" duration="5604000" />
       <workItem from="1473588207180" duration="10260000" />
-      <workItem from="1473668826735" duration="6654000" />
+      <workItem from="1473668826735" duration="10581000" />
+      <workItem from="1473704837706" duration="598000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39148000" />
+    <option name="totallyTimeSpent" value="43673000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="827" height="1047" extended-state="0" />
+    <frame x="-7" y="0" width="974" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21331689" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18058455" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3127001" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -251,7 +266,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -311,6 +326,38 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1003">
+          <caret line="59" column="31" selection-start-line="59" selection-start-column="31" selection-end-line="59" selection-end-column="31" />
+          <folding>
+            <element signature="n#style#0;n#h1#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#279#1482#0" expanded="false" />
+            <element signature="n#!!block;n#addTopic#0" expanded="false" />
+            <element signature="n#!!block;n#loadTopics#0" expanded="false" />
+            <element signature="n#!!block;n#clearTopics#0" expanded="false" />
+            <element signature="n#!!block;n#addQuestion#0" expanded="false" />
+            <element signature="e#3328#3398#0" expanded="false" />
+            <element signature="n#!!block;n#resetQuestionArea#0" expanded="false" />
+            <element signature="n#!!block;n#addResponse#0" expanded="false" />
+            <element signature="n#!!block;n#getSelected#0" expanded="false" />
+            <element signature="n#!!block;n#resetResponseArea#0" expanded="false" />
+            <element signature="n#!!block;n#uuid#0" expanded="false" />
+            <element signature="n#!!block;n#send#0" expanded="false" />
+            <element signature="n#!!block;n#sendWithFunction#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="748">
           <caret line="44" column="12" selection-start-line="44" selection-start-column="12" selection-end-line="44" selection-end-column="12" />
           <folding>
@@ -323,7 +370,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#279#1482#0" expanded="false" />
+            <element signature="n#!!block;n#addTopic#0" expanded="false" />
+            <element signature="n#!!block;n#loadTopics#0" expanded="false" />
+            <element signature="n#!!block;n#clearTopics#0" expanded="false" />
+            <element signature="n#!!block;n#addQuestion#0" expanded="false" />
+            <element signature="e#3328#3398#0" expanded="false" />
+            <element signature="n#!!block;n#resetQuestionArea#0" expanded="false" />
+            <element signature="n#!!block;n#addResponse#0" expanded="false" />
+            <element signature="n#!!block;n#getSelected#0" expanded="false" />
+            <element signature="n#!!block;n#resetResponseArea#0" expanded="false" />
+            <element signature="n#!!block;n#uuid#0" expanded="false" />
+            <element signature="n#!!block;n#send#0" expanded="false" />
+            <element signature="n#!!block;n#sendWithFunction#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -341,7 +402,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
-          <folding />
+          <folding>
+            <element signature="e#279#1482#0" expanded="false" />
+            <element signature="n#!!block;n#addTopic#0" expanded="false" />
+            <element signature="n#!!block;n#loadTopics#0" expanded="false" />
+            <element signature="n#!!block;n#clearTopics#0" expanded="false" />
+            <element signature="n#!!block;n#addQuestion#0" expanded="false" />
+            <element signature="e#3328#3398#0" expanded="false" />
+            <element signature="n#!!block;n#resetQuestionArea#0" expanded="false" />
+            <element signature="n#!!block;n#addResponse#0" expanded="false" />
+            <element signature="n#!!block;n#getSelected#0" expanded="false" />
+            <element signature="n#!!block;n#resetResponseArea#0" expanded="false" />
+            <element signature="n#!!block;n#uuid#0" expanded="false" />
+            <element signature="n#!!block;n#send#0" expanded="false" />
+            <element signature="n#!!block;n#sendWithFunction#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -359,7 +434,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1768">
           <caret line="104" column="26" selection-start-line="104" selection-start-column="26" selection-end-line="104" selection-end-column="26" />
-          <folding />
+          <folding>
+            <element signature="e#279#1482#0" expanded="false" />
+            <element signature="n#!!block;n#addTopic#0" expanded="false" />
+            <element signature="n#!!block;n#loadTopics#0" expanded="false" />
+            <element signature="n#!!block;n#clearTopics#0" expanded="false" />
+            <element signature="n#!!block;n#addQuestion#0" expanded="false" />
+            <element signature="e#3328#3398#0" expanded="false" />
+            <element signature="n#!!block;n#resetQuestionArea#0" expanded="false" />
+            <element signature="n#!!block;n#addResponse#0" expanded="false" />
+            <element signature="n#!!block;n#getSelected#0" expanded="false" />
+            <element signature="n#!!block;n#resetResponseArea#0" expanded="false" />
+            <element signature="n#!!block;n#uuid#0" expanded="false" />
+            <element signature="n#!!block;n#send#0" expanded="false" />
+            <element signature="n#!!block;n#sendWithFunction#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -377,7 +466,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#279#1482#0" expanded="false" />
+            <element signature="n#!!block;n#addTopic#0" expanded="false" />
+            <element signature="n#!!block;n#loadTopics#0" expanded="false" />
+            <element signature="n#!!block;n#clearTopics#0" expanded="false" />
+            <element signature="n#!!block;n#addQuestion#0" expanded="false" />
+            <element signature="e#3328#3398#0" expanded="false" />
+            <element signature="n#!!block;n#resetQuestionArea#0" expanded="false" />
+            <element signature="n#!!block;n#addResponse#0" expanded="false" />
+            <element signature="n#!!block;n#getSelected#0" expanded="false" />
+            <element signature="n#!!block;n#resetResponseArea#0" expanded="false" />
+            <element signature="n#!!block;n#uuid#0" expanded="false" />
+            <element signature="n#!!block;n#send#0" expanded="false" />
+            <element signature="n#!!block;n#sendWithFunction#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -395,7 +498,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#279#1482#0" expanded="false" />
+            <element signature="n#!!block;n#addTopic#0" expanded="false" />
+            <element signature="n#!!block;n#loadTopics#0" expanded="false" />
+            <element signature="n#!!block;n#clearTopics#0" expanded="false" />
+            <element signature="n#!!block;n#addQuestion#0" expanded="false" />
+            <element signature="e#3328#3398#0" expanded="false" />
+            <element signature="n#!!block;n#resetQuestionArea#0" expanded="false" />
+            <element signature="n#!!block;n#addResponse#0" expanded="false" />
+            <element signature="n#!!block;n#getSelected#0" expanded="false" />
+            <element signature="n#!!block;n#resetResponseArea#0" expanded="false" />
+            <element signature="n#!!block;n#uuid#0" expanded="false" />
+            <element signature="n#!!block;n#send#0" expanded="false" />
+            <element signature="n#!!block;n#sendWithFunction#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -438,7 +555,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="303">
           <caret line="431" column="0" selection-start-line="431" selection-start-column="0" selection-end-line="431" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -454,8 +570,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="713">
-          <caret line="61" column="57" selection-start-line="61" selection-start-column="57" selection-end-line="61" selection-end-column="57" />
+        <state relative-caret-position="1003">
+          <caret line="59" column="31" selection-start-line="59" selection-start-column="31" selection-end-line="59" selection-end-column="31" />
           <folding>
             <element signature="n#style#0;n#h1#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
@@ -464,9 +580,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="142" column="42" selection-start-line="142" selection-start-column="42" selection-end-line="142" selection-end-column="42" />
-          <folding />
+        <state relative-caret-position="776">
+          <caret line="155" column="18" selection-start-line="155" selection-start-column="18" selection-end-line="155" selection-end-column="18" />
+          <folding>
+            <element signature="e#279#1482#0" expanded="false" />
+            <element signature="n#!!block;n#addTopic#0" expanded="false" />
+            <element signature="n#!!block;n#loadTopics#0" expanded="false" />
+            <element signature="n#!!block;n#clearTopics#0" expanded="false" />
+            <element signature="n#!!block;n#addQuestion#0" expanded="false" />
+            <element signature="e#3328#3398#0" expanded="false" />
+            <element signature="n#!!block;n#resetQuestionArea#0" expanded="false" />
+            <element signature="n#!!block;n#addResponse#0" expanded="false" />
+            <element signature="n#!!block;n#getSelected#0" expanded="false" />
+            <element signature="n#!!block;n#resetResponseArea#0" expanded="false" />
+            <element signature="n#!!block;n#uuid#0" expanded="false" />
+            <element signature="n#!!block;n#send#0" expanded="false" />
+            <element signature="n#!!block;n#sendWithFunction#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

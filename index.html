@@ -56,9 +56,10 @@
             </select>
             <select id="newOurResponse">
                 <option disabled selected>Should the given response be used by our AI if asked the selected question?</option>
-                <option value="t">True</option>
-                <option>False</option>
+                <option value="true">True</option>
+                <option value="false">False</option>
             </select>
+            <h4>Select questions that could follow on from this one. Please don't select this question, as we don't want infinite loops <3</h4>
             <select id="multiSelect" multiple="multiple"></select>
             <input type="button" value="Add Response" onclick="addResponse(topicSelector.value, questionSelector.value, newMessage.value, newKeywords.value, newReply.value, newChangeTopic.value, newOurResponse.value)">
         </div>

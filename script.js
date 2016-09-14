@@ -181,24 +181,27 @@ function resetQuestionArea(){
 
 // Sends a response to the server.
 function addResponse(topic, question, response, keywords, reply, changeTopic, ourResponse){
+    var followUps = getSelected();
     if(ourResponse){
-        if(topic == "" || question == "" || response == ""){
+        if(topic == "" || question == "" || response == "" || followUps.length == 0){
             alert("You are missing a field."+
                     "\ntopic: " + topic +
                     "\nquestion: " + question +
-                    "\nresponse: " + response);
+                    "\nresponse: " + response +
+                    "\nfollow ups: " + followUps.length);
             return;
         }
     }
     else{
-        if(topic == "" || question == "" || response == "" || keywords == "" || reply == "" || changeTopic == ""){
+        if(topic == "" || question == "" || response == "" || keywords == "" || reply == "" || changeTopic == "" || followUps.length == 0){
             alert("You are missing a field."+
                 "\ntopic: " + topic +
                 "\nquestion: " + question +
                 "\nresponse: " + response +
                 "\nkeywords: " + keywords +
                 "\nreply: " + reply +
-                "\nchangeTopic: " + changeTopic);
+                "\nchangeTopic: " + changeTopic +
+                "\nfollow ups: " + followUps.length);
             return;
         }
     }
@@ -218,7 +221,7 @@ function addResponse(topic, question, response, keywords, reply, changeTopic, ou
                         "message":response,
                         "presentKeywords":keywords,
                         "response":reply,
-                        "followUp":getSelected(),
+                        "followUp":followUps,
                         "switchTopic":changeTopic,
                         "usedByAI":ourResponse
                     }
@@ -227,6 +230,7 @@ function addResponse(topic, question, response, keywords, reply, changeTopic, ou
         ]
     }
     sendWithFunction(responseJSON, function (reply) {
+        console.log(responseJSON);
         alert("[SERVER] " + reply);
         resetResponseArea();
     });

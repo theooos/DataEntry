@@ -50,6 +50,30 @@ window.onload = function () {
     });
 
     $("#multiSelect").multiselect();
+
+    $(function(){
+        $("#DivTopic input").keypress(function (e) {
+            if (e.keyCode == 13) {
+                addTopic(newTopic.value);
+            }
+        });
+    });
+
+    $(function(){
+        $("#DivQuestion input, #newQuestionStarter").keypress(function (e) {
+            if (e.keyCode == 13) {
+                addQuestion(topicSelector.value, newQuestion.value, newQuestionStarter.value, newQuestionTags.value)
+            }
+        });
+    });
+
+    $(function(){
+        $("#DivResponse input, #newChangeTopic").keypress(function (e) {
+            if (e.keyCode == 13) {
+                addResponse(topicSelector.value, questionSelector.value, newMessage.value, newKeywords.value, newReply.value, newChangeTopic.value, newOurResponse.checked);
+            }
+        });
+    });
 };
 
 
@@ -174,6 +198,7 @@ function resetQuestionArea(){
     newQuestionStarter.value="default";
     multiSelect.innerHTML = "";
     $('#multiSelect').multiselect('refresh');
+    newQuestion.focus();
 }
 
 
@@ -258,6 +283,7 @@ function resetResponseArea() {
     newReply.value = "";
     newChangeTopic.value = "default";
     $('#multiSelect').multiselect('uncheckAll');
+    newMessage.focus();
 }
 
 

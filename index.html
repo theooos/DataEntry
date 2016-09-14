@@ -10,7 +10,7 @@
     </head>
     <body onload="loadTopics()">
         <h1 align="center" style="padding: 30px">Data Entry</h1>
-        <div>
+        <div id="DivTopic">
             <h2>Topic</h2>
             <input id="newTopic" placeholder="Enter a new topic here.">
             <input type="button" id="addTopic" onclick="addTopic(newTopic.value)" value="Add topic">
@@ -24,7 +24,7 @@
 
         <br>
 
-        <div>
+        <div id="DivQuestion">
             <h2>Questions</h2>
             <input id="newQuestion" placeholder="Enter question here.">
             <input id="newQuestionTags" placeholder="Keywords">
@@ -44,7 +44,7 @@
 
         <br>
 
-        <div>
+        <div id="DivResponse">
             <h2>Response</h2>
             <label for="newOurResponse">Is this our AI's reponse?</label><input id="newOurResponse" type="checkbox" style="display: inline">
             <input id="newMessage" placeholder="Response">

@@ -27,12 +27,12 @@
         <div>
             <h2>Questions</h2>
             <input id="newQuestion" placeholder="Enter question here.">
+            <input id="newQuestionTags" placeholder="Keywords">
             <select id="newQuestionStarter">
-                <option value="" disabled selected>Is this an opening question for the topic?</option>
+                <option value="default" disabled selected>Is this an opening question for the topic?</option>
                 <option>True</option>
                 <option>False</option>
             </select>
-            <input id="newQuestionTags" placeholder="Keywords">
             <input type="button" value="Add Question" onclick="addQuestion(topicSelector.value, newQuestion.value, newQuestionStarter.value, newQuestionTags.value)">
             <br>
             <h4>Select a question from dropdown below before adding responses.</h4>
@@ -46,22 +46,18 @@
 
         <div>
             <h2>Response</h2>
-            <input id="newMessage" placeholder="Response | If our AI should use this response, fill it with personality, else make it bland.">
+            <label for="newOurResponse">Is this our AI's reponse?</label><input id="newOurResponse" type="checkbox" style="display: inline">
+            <input id="newMessage" placeholder="Response">
             <input id="newKeywords" placeholder="Keywords | comma separated">
             <input id="newReply" placeholder="Reply to response | A personality filled reply to the response without any information. E.g. Cool!">
             <select id="newChangeTopic">
-                <option value="" disabled selected>If the human gave this response, should we change topic?</option>
+                <option value="default" disabled selected>If the human gave this response, should we change topic?</option>
                 <option>True</option>
                 <option>False</option>
             </select>
-            <select id="newOurResponse">
-                <option disabled selected>Should the given response be used by our AI if asked the selected question?</option>
-                <option value="true">True</option>
-                <option value="false">False</option>
-            </select>
             <h4>Select questions that could follow on from this one. Please don't select this question, as we don't want infinite loops <3</h4>
             <select id="multiSelect" multiple="multiple"></select>
-            <input type="button" value="Add Response" onclick="addResponse(topicSelector.value, questionSelector.value, newMessage.value, newKeywords.value, newReply.value, newChangeTopic.value, newOurResponse.value)">
+            <input type="button" value="Add Response" onclick="addResponse(topicSelector.value, questionSelector.value, newMessage.value, newKeywords.value, newReply.value, newChangeTopic.value, newOurResponse.checked)">
         </div>
     </body>
 </html>

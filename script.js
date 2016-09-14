@@ -1,6 +1,7 @@
 
 var server = "http://138.68.139.139/";
 
+var newTopic;
 var topicSelector;
 
 var newQuestion;
@@ -16,6 +17,7 @@ var newOurResponse;
 var multiSelect;
 
 window.onload = function () {
+    newTopic = document.getElementById('newTopic');
     topicSelector = document.getElementById('topicSelector');
 
     newQuestion = document.getElementById('newQuestion');
@@ -32,7 +34,7 @@ window.onload = function () {
 
 
     $("#newOurResponse").change(function(){
-        if($(this).val() == "true") {
+        if($(this).is(':checked')) {
             newKeywords.value = "";
             newKeywords.disabled = true;
             newReply.value = "";
@@ -63,7 +65,7 @@ function addTopic(topicName) {
         "topic": topicName,
         "questions":[]
     };
-    send(topicJSON, function(reply){
+    sendWithFunction(topicJSON, function(reply){
         alert("[SERVER] " + reply);
         loadTopics();
     });
@@ -72,8 +74,8 @@ function addTopic(topicName) {
 // Populates topics dropdown.
 function loadTopics(){
     clearTopics();
+    topicSelector.innerHTML = "<option value='' disabled selected>Select a topic</option>";
     $.get(server+"topics", function(topics){
-        console.log("[SERVER] " + JSON.stringify(topics));
         topics.forEach(function (topic) {
             var option = document.createElement("option");
             option.text = topic;
@@ -84,7 +86,7 @@ function loadTopics(){
 
 // Clears topics dropdown.
 function clearTopics() {
-    topicSelector.innerHTML = "<option value='' disabled selected>Select a topic</option>";
+    newTopic.value = "";
 }
 
 
@@ -95,6 +97,12 @@ function addQuestion(topic, question, starter, tags) {
     if(topic == "" || question == "" || starter == "" || tags == ""){
         alert("You are missing a field.");
         return;
+    }
+    if(starter == "True"){
+        starter = true;
+    }
+    else{
+        starter= false;
     }
     var questionJSON = {
         "topic":topic,
@@ -109,7 +117,7 @@ function addQuestion(topic, question, starter, tags) {
 
         ]
     }
-    send(questionJSON, function(reply){
+    sendWithFunction(questionJSON, function(reply){
         alert("[SERVER] "+reply);
         loadQuestions(topic);
     });
@@ -124,23 +132,26 @@ function loadQuestions(topic) {
     resetQuestionArea();
 
     $.get(server+"questions/"+topic, function(fullTopic){
-        console.log("[SERVER] " + JSON.stringify(fullTopic));
+        // console.log("[SERVER] " + JSON.stringify(fullTopic));
         var topicJSON = JSON.parse(JSON.stringify(fullTopic));
         var questions = topicJSON["questions"];
 
-        questions.forEach(function(question){
-            var option = document.createElement("option");
-            option.text = question["message"] + questionDetails(question["children"]);
-            option.value = question["id"];
-
-            var option2 = option.cloneNode(true);
-
-            questionSelector.add(option);
-            multiSelect.add(option2);
-        })
-
-        $('#multiSelect').multiselect('refresh');
+        questions.forEach(addToQuestionLists);
     });
+}
+
+// Add's a given question to each question list.
+function addToQuestionLists(question){
+    var option = document.createElement("option");
+    option.text = question["message"] + questionDetails(question["children"]);
+    option.value = question["id"];
+
+    var option2 = option.cloneNode(true);
+
+    questionSelector.add(option);
+    multiSelect.add(option2);
+
+    $('#multiSelect').multiselect('refresh');
 }
 
 // Gets how many children the question has, and also whether it has an AI response, and returns apporpriate label.
@@ -148,8 +159,7 @@ function questionDetails(children){
     var total = children.length;
     var string = " "+total;
     for(var i = 0; i < total; i++){
-        console.log("Used by ai? "+children[i]["usedByAI"]);
-        if(children[i]["usedByAI"] == "true"){
+        if(children[i]["usedByAI"]){
             string += " *";
         }
     }
@@ -161,6 +171,7 @@ function resetQuestionArea(){
     questionSelector.innerHTML = "<option value='' disabled selected>Select a question</option>";
     newQuestion.value = "";
     newQuestionTags.value = "";
+    newQuestionStarter.value="default";
     multiSelect.innerHTML = "";
     $('#multiSelect').multiselect('refresh');
 }
@@ -170,17 +181,32 @@ function resetQuestionArea(){
 
 // Sends a response to the server.
 function addResponse(topic, question, response, keywords, reply, changeTopic, ourResponse){
-    if(ourResponse == "true"){
+    if(ourResponse){
         if(topic == "" || question == "" || response == ""){
-            alert("You are missing a field.1");
+            alert("You are missing a field."+
+                    "\ntopic: " + topic +
+                    "\nquestion: " + question +
+                    "\nresponse: " + response);
             return;
         }
     }
     else{
-        if(topic == "" || question == "" || response == "" || keywords == "" || reply == "" || changeTopic == "" || ourResponse == ""){
-            alert("You are missing a field.2" + ourResponse);
+        if(topic == "" || question == "" || response == "" || keywords == "" || reply == "" || changeTopic == ""){
+            alert("You are missing a field."+
+                "\ntopic: " + topic +
+                "\nquestion: " + question +
+                "\nresponse: " + response +
+                "\nkeywords: " + keywords +
+                "\nreply: " + reply +
+                "\nchangeTopic: " + changeTopic);
             return;
         }
+    }
+    if(changeTopic == "True"){
+        changeTopic = true;
+    }
+    else{
+        changeTopic = false;
     }
     var responseJSON = {
         "topic": topic,
@@ -200,8 +226,10 @@ function addResponse(topic, question, response, keywords, reply, changeTopic, ou
             }
         ]
     }
-    send(responseJSON);
-    resetResponseArea();
+    sendWithFunction(responseJSON, function (reply) {
+        alert("[SERVER] " + reply);
+        resetResponseArea();
+    });
 }
 
 // Retrieves all selected questions from multiselect widget.
@@ -216,11 +244,15 @@ function getSelected(){
 
 // Resets the response area so a new response can be added.
 function resetResponseArea() {
+    newKeywords.disabled = false;
+    newReply.disabled = false;
+    newChangeTopic.disabled = false;
+
+    newOurResponse.checked = false;
     newMessage.value = "";
     newKeywords.value = "";
     newReply.value = "";
-    newChangeTopic.value = "";
-    newOurResponse.value = "";
+    newChangeTopic.value = "default";
     $('#multiSelect').multiselect('uncheckAll');
 }
 
@@ -233,16 +265,6 @@ function uuid(){
         var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
         return v.toString(16);
     });
-}
-
-// Sends provided data to the server with a standard callback.
-function send(data){
-    sendWithFunction(data, function (reply) {
-        console.log("[SENT LINE BELOW]");
-        console.log(data);
-        console.log(JSON.stringify(data));
-        alert("[SERVER] "+reply);
-    })
 }
 
 // Sends provided data to server with provided callback.

@@ -51,29 +51,7 @@ window.onload = function () {
 
     $("#multiSelect").multiselect();
 
-    $(function(){
-        $("#DivTopic input").keypress(function (e) {
-            if (e.keyCode == 13) {
-                addTopic(newTopic.value);
-            }
-        });
-    });
-
-    $(function(){
-        $("#DivQuestion input, #newQuestionStarter").keypress(function (e) {
-            if (e.keyCode == 13) {
-                addQuestion(topicSelector.value, newQuestion.value, newQuestionStarter.value, newQuestionTags.value)
-            }
-        });
-    });
-
-    $(function(){
-        $("#DivResponse input, #newChangeTopic").keypress(function (e) {
-            if (e.keyCode == 13) {
-                addResponse(topicSelector.value, questionSelector.value, newMessage.value, newKeywords.value, newReply.value, newChangeTopic.value, newOurResponse.checked);
-            }
-        });
-    });
+    enableEnterSubmission();
 };
 
 
@@ -306,4 +284,43 @@ function sendWithFunction(data,func){
         success: func,
         contentType: 'application/json'
     });
+}
+
+// Enables the use of the enter key to submit the forms.
+function enableEnterSubmission() {
+    console.log("Enter key enabled.");
+    $("#DivTopic input").keypress(function (e) {
+        if (e.keyCode == 13) {
+            addTopic(newTopic.value);
+            temporaryEnterDisable();
+        }
+    });
+
+    $("#DivQuestion input, #newQuestionStarter").keypress(function (e) {
+        if (e.keyCode == 13) {
+            addQuestion(topicSelector.value, newQuestion.value, newQuestionStarter.value, newQuestionTags.value);
+            temporaryEnterDisable();
+        }
+    });
+
+    $("#DivResponse input, #newChangeTopic").keypress(function (e) {
+        if (e.keyCode == 13) {
+            addResponse(topicSelector.value, questionSelector.value, newMessage.value, newKeywords.value, newReply.value, newChangeTopic.value, newOurResponse.checked);
+            temporaryEnterDisable()
+        }
+    });
+}
+
+// Temporarily disables enter key. Short term workaround while back end resolves issue.
+function temporaryEnterDisable(){
+    var disableLength = 5000;
+    console.log("Enter key disabled.");
+
+    $("#DivTopic input").unbind("keypress");
+    $("#DivQuestion input, #newQuestionStarter").unbind("keypress");
+    $("#DivResponse input, #newChangeTopic").unbind("keypress");
+
+    setTimeout(function(){
+        enableEnterSubmission();
+    }, disableLength);
 }

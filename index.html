@@ -8,7 +8,7 @@
         <link rel="stylesheet" type="text/css" href="jquery/jquery.multiselect.css">
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
-    <body onload="loadTopics()">
+    <body>
         <h1 align="center" style="padding: 30px">Data Entry</h1>
         <div id="DivTopic">
             <h2>Topic</h2>
@@ -29,9 +29,9 @@
             <input id="newQuestion" placeholder="Enter question here.">
             <input id="newQuestionTags" placeholder="Keywords">
             <select id="newQuestionStarter">
-                <option value="default" disabled selected>Is this an opening question for the topic?</option>
+                <option disabled>Is this THE opening question for the topic?</option>
                 <option>True</option>
-                <option>False</option>
+                <option selected>False</option>
             </select>
             <input type="button" value="Add Question" onclick="addQuestion(topicSelector.value, newQuestion.value, newQuestionStarter.value, newQuestionTags.value)">
             <br>

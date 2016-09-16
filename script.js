@@ -52,6 +52,7 @@ window.onload = function () {
     $("#multiSelect").multiselect();
 
     enableEnterSubmission();
+    loadTopics();
 };
 
 
@@ -173,7 +174,7 @@ function resetQuestionArea(){
     questionSelector.innerHTML = "<option value='' disabled selected>Select a question</option>";
     newQuestion.value = "";
     newQuestionTags.value = "";
-    newQuestionStarter.value="default";
+    newQuestionStarter;
     multiSelect.innerHTML = "";
     $('#multiSelect').multiselect('refresh');
     newQuestion.focus();
@@ -260,7 +261,7 @@ function resetResponseArea() {
     newKeywords.value = "";
     newReply.value = "";
     newChangeTopic.value = "default";
-    $('#multiSelect').multiselect('uncheckAll');
+    // $('#multiSelect').multiselect('uncheckAll');
     newMessage.focus();
 }
 
